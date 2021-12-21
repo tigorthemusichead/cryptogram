@@ -1,4 +1,4 @@
- let state = {
+let state = {
     isTranslatingTo: true,
     swapLang: ()=>{
         state.isTranslatingTo = !state.isTranslatingTo;

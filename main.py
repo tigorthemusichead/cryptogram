@@ -23,12 +23,16 @@ def translate_from(data):
             for с in code[i]:
                 temp = temp + str(ord(с)-1040)
             code[i] = temp
-        for i in range(len(code)-2):
-            # print(int(base_to_base(code[i], int(code[i+1][-1])+2, 2)))
-            code[i] = chr(int(code[i], int(code[i + 1][-1]) + 2))
-        code[len(code)-2] = chr(int(code[len(code)-2], int(code[len(code)-1][-3:], 2) + 2))
-        code[len(code)-1] = chr(int(code[len(code)-1], 2))
-        code = ''.join(code)
+        try:
+            for i in range(len(code)-2):
+                code[i] = chr(int(code[i], int(code[i + 1][-1]) + 2))
+            code[len(code)-2] = chr(int(code[len(code)-2], int(code[len(code)-1][-3:], 2) + 2))
+            code[len(code)-1] = chr(int(code[len(code)-1], 2))
+            code = ''.join(code)
+        except IndexError:
+            code = "А это и не код"
+        except ValueError:
+            code = "Это не код или код был поврежден"
     return code
 
 
@@ -48,7 +52,6 @@ def translate_to(data):
             key = int(code[i][-1]) + 2
         code.reverse()
         for num in code:
-            # num = '0'*(len(num) % 3) + num
             for i in range(len(num)):
                 result = result + chr(int(num[i])+1040)
             result += 'A'
