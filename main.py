@@ -3,7 +3,7 @@ import pyperclip as pc
 
 eel.init('front')
 
-
+#from number with base n to number with base k
 def base_to_base(number: str, base_gotten: int, base_given: int):
     dec = int(number, base_gotten)
     result = ''
@@ -12,7 +12,7 @@ def base_to_base(number: str, base_gotten: int, base_given: int):
         dec //= base_given
     return result
 
-
+#translate from cryptogram to text
 @eel.expose
 def translate_from(data):
     code = data.split('A')
@@ -35,7 +35,7 @@ def translate_from(data):
             code = "Это не код или код был поврежден"
     return code
 
-
+#translate from text to cryptogram 
 @eel.expose
 def translate_to(data):
     code = []
